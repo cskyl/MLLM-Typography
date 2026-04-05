@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Modal Typography | Project Page</title>
+  <meta name="description" content="Project page: A Systematic Study of Cross-Modal Typographic Attacks on Audio-Visual Reasoning." />
+  <style>
+    :root {
+      --bg: #070b14;
+      --bg-soft: #0d1424;
+      --panel: rgba(12, 19, 34, 0.78);
+      --panel-2: rgba(17, 27, 46, 0.78);
+      --line: rgba(197, 216, 255, 0.14);
+      --line-strong: rgba(197, 216, 255, 0.24);
+      --text: #e9eefb;
+      --muted: #9aaccc;
+      --cyan: #6ae4ff;
+      --violet: #a88bff;
+      --pink: #ff8eca;
+      --gold: #ffca6f;
+      --green: #6df3b2;
+      --danger: #ff8b8b;
+      --shadow: 0 20px 80px rgba(0, 0, 0, 0.42);
+      --radius-lg: 30px;
+      --radius-md: 22px;
+      --radius-sm: 16px;
+      --max: 1280px;
+      --nav-h: 78px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(106, 228, 255, 0.14), transparent 28%),
+        radial-gradient(circle at 80% 16%, rgba(168, 139, 255, 0.16), transparent 22%),
+        radial-gradient(circle at 84% 62%, rgba(255, 202, 111, 0.12), transparent 24%),
+        linear-gradient(180deg, #08101d 0%, #060a13 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55), transparent 75%);
+      opacity: 0.35;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      height: 3px;
+      width: 0;
+      background: linear-gradient(90deg, var(--cyan), var(--violet), var(--gold));
+      box-shadow: 0 0 18px rgba(106, 228, 255, 0.55);
+      z-index: 200;
+      transition: width 0.08s linear;
+    }
+
+    .shell {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 12px;
+      z-index: 100;
+      padding-top: 12px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(7, 11, 20, 0.62);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      position: relative;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(106, 228, 255, 0.8), rgba(106, 228, 255, 0) 48%),
+        radial-gradient(circle at 72% 35%, rgba(168, 139, 255, 0.75), rgba(168, 139, 255, 0) 45%),
+        linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.14);
+      overflow: hidden;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .brand-mark::after {
+      inset: auto 10px 10px 10px;
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(106, 228, 255, 0.8), rgba(168, 139, 255, 0.7), rgba(255, 202, 111, 0.75));
+      border: none;
+      filter: blur(0.2px);
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 0.98rem;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      padding: 10px 14px;
+      color: var(--muted);
+      border-radius: 999px;
+      transition: 0.2s ease;
+      font-size: 0.93rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .hero {
+      position: relative;
+      padding: 66px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: #dbe5ff;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, var(--cyan), var(--violet));
+      box-shadow: 0 0 18px rgba(106, 228, 255, 0.65);
+    }
+
+    h1 {
+      margin: 18px 0 18px;
+      font-size: clamp(2.5rem, 5vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      max-width: 12ch;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 62ch;
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+
+    .authors {
+      display: grid;
+      gap: 10px;
+      margin-top: 24px;
+      padding: 18px 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      max-width: 760px;
+    }
+
+    .author-line {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: #edf3ff;
+      letter-spacing: -0.01em;
+    }
+
+    .author-line strong {
+      font-size: 1.06rem;
+    }
+
+    .author-affil,
+    .author-contact {
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: #dbe4fb;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .chip b {
+      font-weight: 700;
+      color: white;
+    }
+
+    .chip .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.95;
+      box-shadow: 0 0 14px currentColor;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 20px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-weight: 650;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.24);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(106, 228, 255, 0.22), rgba(168, 139, 255, 0.18));
+      border-color: rgba(106, 228, 255, 0.24);
+    }
+
+    .hero-note {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .hero-stage {
+      position: relative;
+      padding: 28px;
+      min-height: 640px;
+      border-radius: 36px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)),
+        radial-gradient(circle at 72% 24%, rgba(168, 139, 255, 0.20), rgba(168, 139, 255, 0) 28%),
+        radial-gradient(circle at 22% 80%, rgba(255, 202, 111, 0.10), rgba(255, 202, 111, 0) 22%),
+        rgba(11, 18, 33, 0.82);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-stage::before,
+    .hero-stage::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(10px);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .hero-stage::before {
+      width: 220px;
+      height: 220px;
+      right: -70px;
+      top: -30px;
+      background: radial-gradient(circle, rgba(106,228,255,0.28), rgba(106,228,255,0));
+    }
+
+    .hero-stage::after {
+      width: 200px;
+      height: 200px;
+      left: -70px;
+      bottom: -40px;
+      background: radial-gradient(circle, rgba(168,139,255,0.24), rgba(168,139,255,0));
+    }
+
+    .hero-figure-frame {
+      position: relative;
+      z-index: 2;
+      border-radius: 26px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.40);
+      transform: perspective(1600px) rotateY(-6deg) rotateX(3deg);
+      transform-origin: center;
+      transition: transform 0.25s ease;
+    }
+
+    .hero-figure-frame:hover {
+      transform: perspective(1600px) rotateY(-2deg) rotateX(1deg) translateY(-2px);
+    }
+
+    .hero-figure-frame img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .float-card {
+      position: absolute;
+      z-index: 3;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(12, 19, 34, 0.74);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+    }
+
+    .float-card small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-bottom: 6px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .float-card strong {
+      display: block;
+      font-size: 1.45rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .float-card p {
+      margin: 0;
+      color: #dbe3f9;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .metric-bars {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: 84px 1fr 52px;
+      gap: 10px;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .metric-track {
+      height: 8px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .metric-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+    }
+
+    .card-a { top: 40px; left: 24px; width: 230px; }
+    .card-b { right: 24px; bottom: 34px; width: 250px; }
+    .card-c { left: 56px; bottom: 56px; width: 185px; }
+
+    section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.75rem);
+      letter-spacing: -0.04em;
+      line-height: 1.02;
+    }
+
+    .section-head p {
+      margin: 12px 0 0;
+      max-width: 62ch;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .section-tag {
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), transparent 35%);
+      opacity: 0.8;
+    }
+
+    .statement {
+      font-size: 1.28rem;
+      line-height: 1.65;
+      color: #eef3ff;
+      letter-spacing: -0.02em;
+      max-width: 32ch;
+      position: relative;
+      z-index: 1;
+    }
+
+    .statement b { color: var(--cyan); }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mini {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mini strong {
+      display: block;
+      font-size: 1.28rem;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .mini span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .rings {
+      display: grid;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ring-card {
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .ring-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .ring-head h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .ring {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: white;
+      background: conic-gradient(var(--cyan) calc(var(--p) * 1%), rgba(255,255,255,0.08) 0);
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .ring::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border-radius: inherit;
+      background: rgba(8, 12, 22, 0.95);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .ring span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .ring-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 0.95rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .stat-card {
+      padding: 24px;
+      border-radius: 24px;
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::after {
+      content: "";
+      position: absolute;
+      right: -24px;
+      top: -18px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.10), rgba(255,255,255,0));
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 18px;
+    }
+
+    .stat-value {
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: -0.06em;
+      line-height: 1;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .stat-card p {
+      margin: 0;
+      color: #dbe4fb;
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+
+    .modality-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .modality {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      min-height: 300px;
+    }
+
+    .icon-wrap {
+      width: 64px;
+      height: 64px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      margin-bottom: 20px;
+    }
+
+    .modality h3 {
+      margin: 0 0 10px;
+      font-size: 1.28rem;
+      letter-spacing: -0.03em;
+    }
+
+    .modality p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.96rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: #e7efff;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .step {
+      position: relative;
+      padding: 20px;
+      border-radius: 24px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      min-height: 250px;
+      overflow: hidden;
+    }
+
+    .step-index {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      font-weight: 800;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, rgba(106,228,255,0.22), rgba(168,139,255,0.18));
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .step h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.75;
+    }
+
+    .step::after {
+      content: "";
+      position: absolute;
+      inset: auto -20px 24px auto;
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(106,228,255,0.55), rgba(106,228,255,0));
+    }
+
+    .step:last-child::after { display: none; }
+
+    .figure-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 18px;
+    }
+
+    .figure-large,
+    .figure-stack > figure,
+    .wide-figure {
+      margin: 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .figure-large img,
+    .figure-stack img,
+    .wide-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    figcaption {
+      padding: 16px 18px 20px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.92rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+    }
+
+    figcaption b {
+      color: #f4f7ff;
+      font-weight: 700;
+    }
+
+    .figure-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 18px;
+    }
+
+    .list-card {
+      padding: 24px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .list-card h3 {
+      margin: 0 0 16px;
+      font-size: 1.18rem;
+      letter-spacing: -0.03em;
+    }
+
+    .pill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pill {
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: #e7efff;
+      font-size: 0.92rem;
+    }
+
+    .matrix-copy {
+      margin-top: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    .safety-grid {
+      display: grid;
+      grid-template-columns: 0.96fr 1.04fr;
+      gap: 18px;
+    }
+
+    .alert {
+      padding: 24px;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(255,139,139,0.18), rgba(255,139,139,0) 36%),
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)),
+        rgba(14, 17, 28, 0.84);
+      box-shadow: var(--shadow);
+    }
+
+    .alert h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .alert p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .drop-board {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .drop {
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .drop strong {
+      display: block;
+      font-size: 1.65rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    .drop span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .compare-card {
+      padding: 24px;
+      border-radius: 30px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .compare-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .compare-header h3 {
+      margin: 0;
+      font-size: 1.22rem;
+    }
+
+    .compare-header p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.93rem;
+      max-width: 54ch;
+    }
+
+    .bar-rows {
+      display: grid;
+      gap: 16px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 180px 1fr 56px;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .bar-row label {
+      color: #ecf2ff;
+      font-size: 0.95rem;
+    }
+
+    .bar-track {
+      height: 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      width: calc(var(--value) * 1%);
+      background: linear-gradient(90deg, rgba(255,139,139,0.95), rgba(255,202,111,0.92));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+    }
+
+    .resources {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+    }
+
+    .resource-card,
+    .blind-card {
+      padding: 24px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .resource-card h3,
+    .blind-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.18rem;
+      letter-spacing: -0.03em;
+    }
+
+    .resource-card p,
+    .blind-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.82;
+      font-size: 0.95rem;
+    }
+
+    .resource-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .resource-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .resource-item strong {
+      display: block;
+      font-size: 0.98rem;
+      margin-bottom: 4px;
+    }
+
+    .resource-item span {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .ghost {
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      color: #ebf2ff;
+      font-size: 0.88rem;
+      white-space: nowrap;
+    }
+
+    .blind-note {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .blind-tip {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .blind-tip strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.98rem;
+    }
+
+    .blind-tip span {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      padding: 34px 0 70px;
+      color: var(--muted);
+    }
+
+    .footer-panel {
+      padding: 24px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: rgba(9, 14, 24, 0.82);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .footer-panel p {
+      margin: 8px 0 0;
+      line-height: 1.8;
+      font-size: 0.92rem;
+    }
+
+    .footer-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      will-change: transform, opacity;
+    }
+
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+
+    .js .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1160px) {
+      .hero-grid,
+      .overview-grid,
+      .figure-grid,
+      .matrix,
+      .safety-grid,
+      .resources,
+      .stats-grid,
+      .modality-grid,
+      .timeline {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-grid,
+      .overview-grid,
+      .figure-grid,
+      .matrix,
+      .safety-grid,
+      .resources {
+        align-items: stretch;
+      }
+
+      .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .modality-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero-stage { min-height: 580px; }
+      .card-a { left: 18px; top: 18px; }
+      .card-b { right: 18px; bottom: 18px; }
+      .card-c { left: 24px; bottom: 32px; }
+    }
+
+    @media (max-width: 860px) {
+      .shell { width: min(calc(100% - 24px), var(--max)); }
+      .nav { padding: 12px 14px; }
+      .nav-links { display: none; }
+      .hero-grid,
+      .overview-grid,
+      .figure-grid,
+      .matrix,
+      .safety-grid,
+      .resources,
+      .stats-grid,
+      .modality-grid,
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head { grid-template-columns: 1fr; }
+      .hero { padding-top: 40px; }
+      .hero-stage {
+        min-height: auto;
+        padding: 18px;
+      }
+
+      .hero-figure-frame {
+        transform: none;
+      }
+
+      .float-card {
+        position: static;
+        width: auto;
+        margin-top: 14px;
+      }
+
+      .card-c { order: 3; }
+      .bar-row { grid-template-columns: 1fr; }
+      .footer-panel { grid-template-columns: 1fr; }
+      .footer-actions { justify-content: flex-start; }
+      .drop-board { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <script>document.documentElement.classList.add('js');</script>
+  <div class="progress" id="progress"></div>
+
+  <div class="topbar shell">
+    <div class="nav">
+      <a class="brand" href="#top">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-copy">
+          <strong>Multi-Modal Typography</strong>
+          <span>Cross-modal typographic attacks on audio-visual reasoning</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#findings">Findings</a>
+        <a href="#method">Method</a>
+        <a href="#figures">Figures</a>
+        <a href="#safety">Safety</a>
+        <a href="#resources">Resources</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">ArXiv preprint</div>
+          <h1>Cross-Modal Typographic Attacks</h1>
+          <p class="subtitle">
+            Project page for <em>A Systematic Study of Cross-Modal Typographic Attacks on Audio-Visual Reasoning</em>.
+            This ArXiv-style version foregrounds the paper, authors, and core findings in a clean public-facing layout while preserving the premium visual language:
+            dark editorial surfaces, modality-colored accents, strong hierarchy, and figure-first storytelling.
+          </p>
+
+          <div class="authors">
+            <div class="author-line"><strong>Tianle Chen</strong> &nbsp;&nbsp;·&nbsp;&nbsp; <strong>Deepti Ghadiyaram</strong></div>
+            <div class="author-affil">Department of Computer Science, Boston University</div>
+            <div class="author-contact">{tianle, dghadiya}@bu.edu</div>
+          </div>
+
+          <div class="hero-meta">
+            <div class="chip" style="color: var(--cyan);"><span class="dot"></span><b>Audio</b> typography</div>
+            <div class="chip" style="color: var(--gold);"><span class="dot"></span><b>Visual</b> typography</div>
+            <div class="chip" style="color: var(--violet);"><span class="dot"></span><b>Text</b> prompt injection</div>
+            <div class="chip"><b>Boston University</b> authors</div>
+          </div>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="#findings">Explore the findings</a>
+            <a class="btn" href="paper.pdf">Read preprint PDF</a>
+          </div>
+
+          <p class="hero-note">
+            Designed for a public research audience: visually striking enough to feel memorable, restrained enough to remain credible,
+            and structured so the paper, authors, and main results are immediately legible.
+          </p>
+        </div>
+
+        <div class="hero-stage reveal" id="heroStage">
+          <div class="float-card card-a">
+            <small>Headline result</small>
+            <strong><span class="count" data-target="83.43">83.43</span>% ASR</strong>
+            <p>Aligned audio + visual perturbations are markedly stronger than single-modality audio attacks.</p>
+            <div class="metric-bars">
+              <div class="metric-row"><span>Audio only</span><div class="metric-track"><div class="metric-fill" style="width:34.93%;"></div></div><b>34.93</b></div>
+              <div class="metric-row"><span>Aligned AV</span><div class="metric-track"><div class="metric-fill" style="width:83.43%; background: linear-gradient(90deg, var(--gold), var(--pink));"></div></div><b>83.43</b></div>
+            </div>
+          </div>
+
+          <div class="hero-figure-frame">
+            <img src="assets/hero_1.png" alt="Figure showing clean audio-video input, injected audio and visual distractors, and resulting model prediction shift." />
+          </div>
+
+          <div class="float-card card-b">
+            <small>Safety stress test</small>
+            <strong><span class="count" data-target="8.04">8.04</span>% harmful detection</strong>
+            <p>Prompt-style benign speech can suppress harmful-content detection in the MetaHarm evaluation slice.</p>
+          </div>
+
+          <div class="float-card card-c">
+            <small>WorldSense</small>
+            <strong><span class="count" data-target="64.03">64.03</span>%</strong>
+            <p>Standalone spoken typography steers Qwen2.5-Omni-7B strongly on audio-visual questions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell" id="overview">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-tag">Overview</div>
+          <h2>The page should tell the scientific story in under ten seconds.</h2>
+          <p>
+            This concept treats the project page as a research narrative, not just a repository landing page. The first screen makes the core vulnerability visually obvious,
+            the next section compresses the main claims into high-confidence takeaways, and later sections expand into methods, ablations, figures, and safety implications.
+          </p>
+        </div>
+      </div>
+
+      <div class="overview-grid">
+        <div class="panel reveal">
+          <div class="statement">
+            The page is framed around one memorable idea: <b>speech is a native, realistic attack surface</b> for audio-visual MLLMs, and it can redirect both audio-grounded and visually grounded reasoning.
+          </div>
+          <div class="mini-grid">
+            <div class="mini">
+              <strong>Cross-modal framing</strong>
+              <span>Present audio, visual, and text attacks as three coordinated streams instead of three isolated benchmarks.</span>
+            </div>
+            <div class="mini">
+              <strong>Figure-first storytelling</strong>
+              <span>Use the paper figures as centerpiece artifacts so the page feels anchored in the actual science.</span>
+            </div>
+            <div class="mini">
+              <strong>Public-release ready</strong>
+              <span>Present authors, affiliation, and preprint access directly in the hero while keeping the visual composition clean and uncluttered.</span>
+            </div>
+            <div class="mini">
+              <strong>Premium visual system</strong>
+              <span>Dark editorial surfaces, soft glows, modality accents, and restrained motion create a fancy but credible aesthetic.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rings reveal">
+          <div class="ring-card">
+            <div class="ring-head">
+              <div>
+                <h3>Why this story works</h3>
+                <p style="margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.7;">Each card turns a technical result into a fast visual cue.</p>
+              </div>
+              <div class="ring" style="--p:83.43;"><span>83%</span></div>
+            </div>
+            <p>Use circular progress graphics only for the most memorable numbers. This keeps the page clean while still feeling dynamic and modern.</p>
+          </div>
+          <div class="ring-card">
+            <div class="ring-head">
+              <div>
+                <h3>Modality-colored hierarchy</h3>
+                <p style="margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.7;">Cyan for audio, gold for visual, violet for text.</p>
+              </div>
+              <div class="ring" style="--p:64.03; background: conic-gradient(var(--gold) calc(var(--p) * 1%), rgba(255,255,255,0.08) 0);"><span>64%</span></div>
+            </div>
+            <p>Readers can intuit modality mapping at a glance, which is especially useful when the page moves across ablations and mixed attacks.</p>
+          </div>
+          <div class="ring-card">
+            <div class="ring-head">
+              <div>
+                <h3>Safety signal</h3>
+                <p style="margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.7;">Finish with deployment implications, not just benchmark numbers.</p>
+              </div>
+              <div class="ring" style="--p:26.16; background: conic-gradient(var(--danger) calc(var(--p) * 1%), rgba(255,255,255,0.08) 0);"><span>26%</span></div>
+            </div>
+            <p>The moderation section should feel more urgent than the rest of the page, with warmer accents and stronger contrast.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell" id="findings">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-tag">Key findings</div>
+          <h2>Lead with numbers that are impossible to miss.</h2>
+          <p>
+            The page should not make visitors dig through tables to understand the contribution. Four large cards summarize the strongest results, then link the reader toward the figure gallery and method section.
+          </p>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat-card reveal">
+          <div class="stat-label">Aligned multimodal attack</div>
+          <div class="stat-value"><span class="count" data-target="83.43">83.43</span>%</div>
+          <p>On MMA-Bench audio questions for Qwen2.5-Omni-7B, aligned audio + visual perturbations outperform audio-only and visual-only attacks.</p>
+        </article>
+        <article class="stat-card reveal">
+          <div class="stat-label">Standalone audio typography</div>
+          <div class="stat-value"><span class="count" data-target="64.03">64.03</span>%</div>
+          <p>Audio injection alone reaches strong targeted attack success on WorldSense, showing that speech is already a powerful channel.</p>
+        </article>
+        <article class="stat-card reveal">
+          <div class="stat-label">Cross-modal spillover</div>
+          <div class="stat-value"><span class="count" data-target="12.85">12.85</span>%</div>
+          <p>Speech does not only hurt audio-centric reasoning. It also reduces accuracy on visually focused questions in MMA-Bench.</p>
+        </article>
+        <article class="stat-card reveal">
+          <div class="stat-label">Safety degradation</div>
+          <div class="stat-value"><span class="count" data-target="8.04">8.04</span>%</div>
+          <p>Under stronger prompt-style benign speech, harmful-content detection on the MetaHarm slice falls sharply for Qwen2.5-Omni-7B.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-tag">Attack channels</div>
+          <h2>Explain the three modalities as a single coordinated design language.</h2>
+          <p>
+            This section is where the fancy visual identity becomes useful. Each modality card gets a distinct accent, icon, and semantic role so visitors can mentally index the system immediately.
+          </p>
+        </div>
+      </div>
+
+      <div class="modality-grid">
+        <article class="modality reveal">
+          <div class="icon-wrap">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+              <path d="M5 16.5c2.2 0 2.2-6 4.4-6s2.2 9 4.4 9 2.2-15 4.4-15 2.2 19 4.4 19 2.2-10 4.4-10" stroke="#6ae4ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Audio typography</h3>
+          <p>Use spoken target cues as the native adversarial channel. Visually, this card should feel fluid and temporal, with wave-like accents and soft cyan glows.</p>
+          <div class="tag-row">
+            <span class="tag">TTS injection</span>
+            <span class="tag">Volume</span>
+            <span class="tag">Repetition</span>
+            <span class="tag">Timing</span>
+          </div>
+        </article>
+
+        <article class="modality reveal">
+          <div class="icon-wrap">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+              <rect x="4" y="6" width="22" height="18" rx="4" stroke="#ffca6f" stroke-width="2"/>
+              <path d="M8 12h14M8 16h10M8 20h8" stroke="#ffca6f" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Visual typography</h3>
+          <p>Overlayed on-screen text is the most legible visual cue. Give this block stronger geometric framing, slightly brighter borders, and a warmer gold highlight.</p>
+          <div class="tag-row">
+            <span class="tag">On-screen text</span>
+            <span class="tag">Prompt hijack</span>
+            <span class="tag">Scene override</span>
+          </div>
+        </article>
+
+        <article class="modality reveal">
+          <div class="icon-wrap">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+              <path d="M7 8.5h16a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H14l-5 4v-4H7a3 3 0 0 1-3-3v-7a3 3 0 0 1 3-3Z" stroke="#a88bff" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="11" cy="15" r="1.5" fill="#a88bff"/>
+              <circle cx="15" cy="15" r="1.5" fill="#a88bff"/>
+              <circle cx="19" cy="15" r="1.5" fill="#a88bff"/>
+            </svg>
+          </div>
+          <h3>Text prompt channel</h3>
+          <p>Prompt text completes the triad. This card should feel slightly more abstract and symbolic, using violet gradients and compact language-oriented badges.</p>
+          <div class="tag-row">
+            <span class="tag">Instruction text</span>
+            <span class="tag">Target semantics</span>
+            <span class="tag">Cross-modal conflict</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell" id="method">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-tag">Method</div>
+          <h2>Turn the paper into a clean visual pipeline.</h2>
+          <p>
+            Method sections on project pages often become dense. Here the solution is a five-step visual pipeline: clean input, speech generation, attack construction, model evaluation, and safety analysis.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <article class="step reveal">
+          <div class="step-index">1</div>
+          <h3>Start from clean audio-video inputs</h3>
+          <p>Use a calm baseline card with neutral lighting and clean spacing to represent the original multimodal scene before perturbation.</p>
+        </article>
+        <article class="step reveal">
+          <div class="step-index">2</div>
+          <h3>Inject spoken target cues</h3>
+          <p>Represent TTS-based perturbation with waveform motifs and parameter chips for volume, repetition, temporal placement, and voice identity.</p>
+        </article>
+        <article class="step reveal">
+          <div class="step-index">3</div>
+          <h3>Compose cross-modal conflicts</h3>
+          <p>Show audio, visual, and text streams as coordinated rails so visitors can immediately understand aligned and conflicting attack settings.</p>
+        </article>
+        <article class="step reveal">
+          <div class="step-index">4</div>
+          <h3>Evaluate ACC and ASR</h3>
+          <p>Convert the benchmark story into readable cards rather than raw tables. Emphasize targeted redirection, not just overall degradation.</p>
+        </article>
+        <article class="step reveal">
+          <div class="step-index">5</div>
+          <h3>Stress safety-sensitive moderation</h3>
+          <p>Close the method pipeline with a warmer, more urgent card to preview why this matters beyond benchmark performance.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell" id="figures">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-tag">Figure gallery</div>
+          <h2>Use the strongest figures as premium visual anchors.</h2>
+          <p>
+            The gallery should feel editorial. One larger figure establishes attack mechanics, while the smaller cards reveal parameter sensitivity and the effectiveness-stealth trade-off.
+          </p>
+        </div>
+      </div>
+
+      <div class="figure-grid">
+        <figure class="figure-large reveal">
+          <img src="assets/fig2_1.png" alt="Figure summarizing audio-visual typography takeaways and parameter sensitivity across volume, insertion position, repetition, and voice identity." />
+          <figcaption><b>Figure focus:</b> Sensitivity across volume, insertion position, repetition, and voice identity. This belongs in a large editorial card because it explains what the attack knobs actually do.</figcaption>
+        </figure>
+
+        <div class="figure-stack">
+          <figure class="reveal">
+            <img src="assets/fig3_1.png" alt="Figure plotting effectiveness-stealth trade-off for audio questions with relative RMS and speech recognition shift." />
+            <figcaption><b>Trade-off view:</b> Volume is strongest but least stealthy, while repetition offers a more favorable effectiveness-stealth balance.</figcaption>
+          </figure>
+          <figure class="reveal">
+            <img src="assets/fig6_1.png" alt="WorldSense parameter sensitivity figure for Qwen2.5-Omni-7B showing targeted ASR and label accuracy changes." />
+            <figcaption><b>WorldSense stress test:</b> Gain and repetition remain the dominant controls even in longer, speech-rich videos.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <figure class="wide-figure reveal" style="margin-top: 18px;">
+        <img src="assets/fig19_2.png" alt="Prediction redistribution figure showing the effect of gain variation on ground-truth and injected target predictions." />
+        <figcaption><b>Prediction redistribution:</b> A strong footer-style figure for the ablation block. It visually confirms that the model is being redirected toward the injected target rather than merely becoming noisy.</figcaption>
+      </figure>
+    </section>
+
+    <section class="shell">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-tag">Experimental matrix</div>
+          <h2>Make the coverage feel broad without drowning the reader in detail.</h2>
+          <p>
+            This block reassures technical visitors that the study is systematic. The design should favor pills, clustered tags, and one short paragraph instead of a giant benchmark table on the landing page.
+          </p>
+        </div>
+      </div>
+
+      <div class="matrix">
+        <div class="list-card reveal">
+          <h3>Evaluated models</h3>
+          <div class="pill-cloud">
+            <span class="pill">Qwen2.5-Omni-7B</span>
+            <span class="pill">Qwen3-Omni-30B</span>
+            <span class="pill">PandaGPT</span>
+            <span class="pill">ChatBridge</span>
+            <span class="pill">Gemini-2.5-Flash-Lite</span>
+            <span class="pill">Gemini-3.1-Flash-Lite-preview</span>
+          </div>
+          <p class="matrix-copy">The layout uses distinct pills so model diversity reads quickly. On a final public version, hovering each pill can reveal one-line notes or a compact results table.</p>
+        </div>
+
+        <div class="list-card reveal">
+          <h3>Benchmarks and slices</h3>
+          <div class="pill-cloud">
+            <span class="pill">MMA-Bench</span>
+            <span class="pill">Music-AVQA</span>
+            <span class="pill">WorldSense</span>
+            <span class="pill">MetaHarm</span>
+            <span class="pill">I2P</span>
+            <span class="pill">Visual questions</span>
+            <span class="pill">Audio questions</span>
+            <span class="pill">Audio-visual questions</span>
+          </div>
+          <p class="matrix-copy">This card mirrors the paper's breadth while keeping the landing page scan-friendly. The deeper tables can live in an appendix or supplementary results page.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell" id="safety">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-tag">Safety and deployment</div>
+          <h2>End the narrative where it matters most.</h2>
+          <p>
+            The project page should clearly signal that this is not just a curiosity about prompts. The final research message is about reliability, moderation, and multimodal robustness under realistic semantic interference.
+          </p>
+        </div>
+      </div>
+
+      <div class="safety-grid">
+        <div class="alert reveal">
+          <h3>Visual tone for the safety block</h3>
+          <p>
+            Shift from cool cyan-violet accents toward warmer amber-red highlights. This creates a subtle emotional transition without losing the overall premium look. The effect should feel serious, not alarmist.
+          </p>
+          <div class="drop-board">
+            <div class="drop">
+              <strong>26.16%</strong>
+              <span>Clean harmful-content detection on the MetaHarm slice.</span>
+            </div>
+            <div class="drop">
+              <strong>20.41%</strong>
+              <span>After a keyword-style benign spoken cue.</span>
+            </div>
+            <div class="drop">
+              <strong>8.04%</strong>
+              <span>After a stronger prompt-style benign spoken cue.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="compare-card reveal">
+          <div class="compare-header">
+            <div>
+              <h3>What the visitor should remember</h3>
+              <p>Benign-seeming speech can weaken moderation and redirect model outputs even when the harmful visual evidence stays on screen.</p>
+            </div>
+          </div>
+          <div class="bar-rows">
+            <div class="bar-row">
+              <label>Clean MetaHarm detection</label>
+              <div class="bar-track"><div class="bar-fill" style="--value:26.16;"></div></div>
+              <strong>26.16</strong>
+            </div>
+            <div class="bar-row">
+              <label>Keyword benign cue</label>
+              <div class="bar-track"><div class="bar-fill" style="--value:20.41;"></div></div>
+              <strong>20.41</strong>
+            </div>
+            <div class="bar-row">
+              <label>Prompt-style benign cue</label>
+              <div class="bar-track"><div class="bar-fill" style="--value:8.04;"></div></div>
+              <strong>8.04</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell" id="resources">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-tag">Resources</div>
+          <h2>Make the public research release feel complete.</h2>
+          <p>
+            This block should now behave like a standard public project page: direct access to the preprint, a clean paper entry, and space for code, data, and citation materials.
+          </p>
+        </div>
+      </div>
+
+      <div class="resources">
+        <div class="resource-card reveal">
+          <h3>Project resources</h3>
+          <p>
+            Use compact, high-polish resource rows rather than large banners. Each row should clearly state what is already available and what will be added next.
+          </p>
+          <div class="resource-list">
+            <div class="resource-item">
+              <div>
+                <strong>ArXiv preprint</strong>
+                <span>Primary public entry point for the paper and abstract.</span>
+              </div>
+              <a class="ghost" href="paper.pdf">Open preprint</a>
+            </div>
+            <div class="resource-item">
+              <div>
+                <strong>Paper PDF</strong>
+                <span>Direct PDF access for readers who want the full manuscript immediately.</span>
+              </div>
+              <a class="ghost" href="paper.pdf">Open PDF</a>
+            </div>
+            <div class="resource-item">
+              <div>
+                <strong>Code and data</strong>
+                <span>Reserved slot for the public repository, benchmark files, and replication materials.</span>
+              </div>
+              <span class="ghost">Coming soon</span>
+            </div>
+            <div class="resource-item">
+              <div>
+                <strong>Appendix figures</strong>
+                <span>Useful for the public version if you want a deeper results tab.</span>
+              </div>
+              <a class="ghost" href="#figures">View section</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="blind-card reveal">
+          <h3>Public release notes</h3>
+          <p>
+            This version should read like a polished public research page. Keep the hero concise, place the authors and affiliation directly under the title, and surface the preprint prominently without crowding the layout.
+          </p>
+          <div class="blind-note">
+            <div class="blind-tip">
+              <strong>Hero composition</strong>
+              <span>Keep the title, authors, affiliation, and preprint access tightly grouped so the first screen feels authoritative and complete.</span>
+            </div>
+            <div class="blind-tip">
+              <strong>Public additions</strong>
+              <span>Add code, data, BibTeX, and optional project video in the same card style so the site stays visually consistent.</span>
+            </div>
+            <div class="blind-tip">
+              <strong>Accessibility</strong>
+              <span>Keep contrast high, motion subtle, alt text present, and key claims readable without hover interactions.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <div class="footer-panel reveal">
+      <div>
+        <div class="section-tag">ArXiv project page</div>
+        <h2 style="margin: 8px 0 0; font-size: clamp(1.5rem, 3vw, 2.4rem); letter-spacing: -0.04em;">Professional, beautiful, and presentation-ready.</h2>
+        <p>
+          This concept deliberately balances luxury and scientific seriousness. It is fancy enough to feel memorable, but every effect is there to serve comprehension: hierarchy, motion, figures, and metric emphasis all reinforce the paper's research story.
+        </p>
+      </div>
+      <div class="footer-actions">
+        <a class="btn btn-primary" href="#top">Back to top</a>
+        <a class="btn" href="paper.pdf">Preprint PDF</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const progress = document.getElementById('progress');
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      progress.style.width = ratio + '%';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const counters = document.querySelectorAll('.count');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseFloat(el.dataset.target || '0');
+        const duration = 1500;
+        const start = performance.now();
+        const decimals = (String(target).split('.')[1] || '').length;
+
+        const tick = (now) => {
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          const value = target * eased;
+          el.textContent = value.toFixed(decimals);
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.45 });
+
+    counters.forEach(el => counterObserver.observe(el));
+
+    const heroStage = document.getElementById('heroStage');
+    if (heroStage && window.matchMedia('(min-width: 861px)').matches) {
+      heroStage.addEventListener('mousemove', (e) => {
+        const rect = heroStage.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        heroStage.style.transform = `perspective(1800px) rotateX(${y * -3}deg) rotateY(${x * 4}deg)`;
+      });
+      heroStage.addEventListener('mouseleave', () => {
+        heroStage.style.transform = 'perspective(1800px) rotateX(0deg) rotateY(0deg)';
+      });
+    }
+  </script>
+</body>
+</html>
