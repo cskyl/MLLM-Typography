@@ -1230,9 +1230,8 @@
           <div class="eyebrow">ArXiv preprint</div>
           <h1>Cross-Modal Typographic Attacks</h1>
           <p class="subtitle">
-            Project page for <em>A Systematic Study of Cross-Modal Typographic Attacks on Audio-Visual Reasoning</em>.
-            This ArXiv-style version foregrounds the paper, authors, and core findings in a clean public-facing layout while preserving the premium visual language:
-            dark editorial surfaces, modality-colored accents, strong hierarchy, and figure-first storytelling.
+            We study how semantically targeted perturbations delivered through audio, visual text, and text prompts influence audio-visual MLLMs.
+            The paper introduces <em>Multi-Modal Typography</em> and shows that spoken injection is a realistic and effective attack channel, with stronger failures under aligned multi-modal perturbations.
           </p>
 
           <div class="authors">
@@ -1254,8 +1253,7 @@
           </div>
 
           <p class="hero-note">
-            Designed for a public research audience: visually striking enough to feel memorable, restrained enough to remain credible,
-            and structured so the paper, authors, and main results are immediately legible.
+            The page highlights the main quantitative findings, attack settings, ablations, and safety implications from the paper in a concise public release format.
           </p>
         </div>
 
@@ -1293,10 +1291,10 @@
       <div class="section-head reveal">
         <div>
           <div class="section-tag">Overview</div>
-          <h2>The page should tell the scientific story in under ten seconds.</h2>
+          <h2>Abstract and main contributions</h2>
           <p>
-            This concept treats the project page as a research narrative, not just a repository landing page. The first screen makes the core vulnerability visually obvious,
-            the next section compresses the main claims into high-confidence takeaways, and later sections expand into methods, ablations, figures, and safety implications.
+            Multi-Modal Typography studies how semantically matched perturbations across audio, visual, and text channels can redirect audio-visual reasoning.
+            The central question is whether MLLMs treat semantically similar signals consistently across modalities, or whether the delivery channel fundamentally changes model behavior.
           </p>
         </div>
       </div>
@@ -1304,24 +1302,24 @@
       <div class="overview-grid">
         <div class="panel reveal">
           <div class="statement">
-            The page is framed around one memorable idea: <b>speech is a native, realistic attack surface</b> for audio-visual MLLMs, and it can redirect both audio-grounded and visually grounded reasoning.
+            <b>Speech is a native and realistic attack surface</b> for audio-visual MLLMs. Injected spoken cues can steer audio-grounded tasks, spill over into visually grounded tasks, and become substantially stronger when paired with aligned visual perturbations.
           </div>
           <div class="mini-grid">
             <div class="mini">
-              <strong>Cross-modal framing</strong>
-              <span>Present audio, visual, and text attacks as three coordinated streams instead of three isolated benchmarks.</span>
+              <strong>Audio as typography</strong>
+              <span>The paper treats synthesized speech as a primary typographic modality and injects short spoken target cues while keeping the visual stream unchanged.</span>
             </div>
             <div class="mini">
-              <strong>Figure-first storytelling</strong>
-              <span>Use the paper figures as centerpiece artifacts so the page feels anchored in the actual science.</span>
+              <strong>Cross-modal fragility</strong>
+              <span>Attacks are evaluated across audio, visual, and text channels to measure how different delivery modalities propagate adversarial semantics.</span>
             </div>
             <div class="mini">
-              <strong>Public-release ready</strong>
-              <span>Present authors, affiliation, and preprint access directly in the hero while keeping the visual composition clean and uncluttered.</span>
+              <strong>Multi-modal amplification</strong>
+              <span>Aligned audio-visual attacks are stronger than single-modality perturbations, showing that semantic agreement across channels amplifies failure.</span>
             </div>
             <div class="mini">
-              <strong>Premium visual system</strong>
-              <span>Dark editorial surfaces, soft glows, modality accents, and restrained motion create a fancy but credible aesthetic.</span>
+              <strong>Safety relevance</strong>
+              <span>The study extends beyond benchmark accuracy to content moderation, showing that benign spoken cues can reduce harmful-content detection.</span>
             </div>
           </div>
         </div>
@@ -1330,32 +1328,32 @@
           <div class="ring-card">
             <div class="ring-head">
               <div>
-                <h3>Why this story works</h3>
-                <p style="margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.7;">Each card turns a technical result into a fast visual cue.</p>
+                <h3>Unimodal audio attack</h3>
+                <p style="margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.7;">Standalone spoken typography on WorldSense.</p>
               </div>
-              <div class="ring" style="--p:83.43;"><span>83%</span></div>
+              <div class="ring" style="--p:64.03;"><span>64%</span></div>
             </div>
-            <p>Use circular progress graphics only for the most memorable numbers. This keeps the page clean while still feeling dynamic and modern.</p>
+            <p>On WorldSense, Qwen2.5-Omni-7B reaches 64.03% targeted ASR under spoken semantic injection.</p>
           </div>
           <div class="ring-card">
             <div class="ring-head">
               <div>
-                <h3>Modality-colored hierarchy</h3>
-                <p style="margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.7;">Cyan for audio, gold for visual, violet for text.</p>
+                <h3>Cross-modal impact</h3>
+                <p style="margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.7;">Visual questions can still be affected by speech.</p>
               </div>
-              <div class="ring" style="--p:64.03; background: conic-gradient(var(--gold) calc(var(--p) * 1%), rgba(255,255,255,0.08) 0);"><span>64%</span></div>
+              <div class="ring" style="--p:12.85; background: conic-gradient(var(--gold) calc(var(--p) * 1%), rgba(255,255,255,0.08) 0);"><span>12.85</span></div>
             </div>
-            <p>Readers can intuit modality mapping at a glance, which is especially useful when the page moves across ablations and mixed attacks.</p>
+            <p>On MMA-Bench visual questions, injected speech reduces Qwen2.5-Omni-7B accuracy by 12.85% even though the visual input is unchanged.</p>
           </div>
           <div class="ring-card">
             <div class="ring-head">
               <div>
-                <h3>Safety signal</h3>
-                <p style="margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.7;">Finish with deployment implications, not just benchmark numbers.</p>
+                <h3>Aligned multi-modal attack</h3>
+                <p style="margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.7;">Coordinated audio and visual perturbations.</p>
               </div>
-              <div class="ring" style="--p:26.16; background: conic-gradient(var(--danger) calc(var(--p) * 1%), rgba(255,255,255,0.08) 0);"><span>26%</span></div>
+              <div class="ring" style="--p:83.43; background: conic-gradient(var(--danger) calc(var(--p) * 1%), rgba(255,255,255,0.08) 0);"><span>83%</span></div>
             </div>
-            <p>The moderation section should feel more urgent than the rest of the page, with warmer accents and stronger contrast.</p>
+            <p>Aligned audio-visual perturbations reach 83.43% ASR on MMA-Bench audio questions for Qwen2.5-Omni-7B.</p>
           </div>
         </div>
       </div>
@@ -1367,7 +1365,7 @@
           <div class="section-tag">Key findings</div>
           <h2>Lead with numbers that are impossible to miss.</h2>
           <p>
-            The page should not make visitors dig through tables to understand the contribution. Four large cards summarize the strongest results, then link the reader toward the figure gallery and method section.
+            These summary cards highlight the strongest quantitative results from the paper across aligned attacks, unimodal spoken attacks, cross-modal spillover, and safety evaluation.
           </p>
         </div>
       </div>
@@ -1400,9 +1398,9 @@
       <div class="section-head reveal">
         <div>
           <div class="section-tag">Attack channels</div>
-          <h2>Explain the three modalities as a single coordinated design language.</h2>
+          <h2>Attack channels</h2>
           <p>
-            This section is where the fancy visual identity becomes useful. Each modality card gets a distinct accent, icon, and semantic role so visitors can mentally index the system immediately.
+            The study compares semantically targeted perturbations delivered through three channels: spoken audio, on-screen visual text, and text prompts.
           </p>
         </div>
       </div>
@@ -1464,9 +1462,9 @@
       <div class="section-head reveal">
         <div>
           <div class="section-tag">Method</div>
-          <h2>Turn the paper into a clean visual pipeline.</h2>
+          <h2>Method pipeline</h2>
           <p>
-            Method sections on project pages often become dense. Here the solution is a five-step visual pipeline: clean input, speech generation, attack construction, model evaluation, and safety analysis.
+            The core experimental workflow starts from clean audio-video inputs, injects controlled target semantics, and measures both accuracy degradation and targeted steering.
           </p>
         </div>
       </div>
@@ -1504,9 +1502,9 @@
       <div class="section-head reveal">
         <div>
           <div class="section-tag">Figure gallery</div>
-          <h2>Use the strongest figures as premium visual anchors.</h2>
+          <h2>Selected figures</h2>
           <p>
-            The gallery should feel editorial. One larger figure establishes attack mechanics, while the smaller cards reveal parameter sensitivity and the effectiveness-stealth trade-off.
+            These figures summarize the main ablations: parameter sensitivity, effectiveness-stealth trade-offs, and prediction redistribution under stronger attacks.
           </p>
         </div>
       </div>
@@ -1514,7 +1512,7 @@
       <div class="figure-grid">
         <figure class="figure-large reveal">
           <img src="assets/fig2_1.png" alt="Figure summarizing audio-visual typography takeaways and parameter sensitivity across volume, insertion position, repetition, and voice identity." />
-          <figcaption><b>Figure focus:</b> Sensitivity across volume, insertion position, repetition, and voice identity. This belongs in a large editorial card because it explains what the attack knobs actually do.</figcaption>
+          <figcaption><b>Figure focus:</b> Sensitivity across volume, insertion position, repetition, and voice identity. This figure shows how volume, insertion position, repetition, and voice identity affect targeted attack strength.</figcaption>
         </figure>
 
         <div class="figure-stack">
@@ -1531,7 +1529,7 @@
 
       <figure class="wide-figure reveal" style="margin-top: 18px;">
         <img src="assets/fig19_2.png" alt="Prediction redistribution figure showing the effect of gain variation on ground-truth and injected target predictions." />
-        <figcaption><b>Prediction redistribution:</b> A strong footer-style figure for the ablation block. It visually confirms that the model is being redirected toward the injected target rather than merely becoming noisy.</figcaption>
+        <figcaption><b>Prediction redistribution:</b> This redistribution analysis shows that stronger attacks reallocate predictions toward the injected target rather than causing only generic corruption.</figcaption>
       </figure>
     </section>
 
@@ -1539,9 +1537,9 @@
       <div class="section-head reveal">
         <div>
           <div class="section-tag">Experimental matrix</div>
-          <h2>Make the coverage feel broad without drowning the reader in detail.</h2>
+          <h2>Experimental scope</h2>
           <p>
-            This block reassures technical visitors that the study is systematic. The design should favor pills, clustered tags, and one short paragraph instead of a giant benchmark table on the landing page.
+            The paper evaluates multiple frontier MLLMs, multiple benchmarks, modality-specific question splits, and safety-oriented test settings.
           </p>
         </div>
       </div>
@@ -1557,7 +1555,7 @@
             <span class="pill">Gemini-2.5-Flash-Lite</span>
             <span class="pill">Gemini-3.1-Flash-Lite-preview</span>
           </div>
-          <p class="matrix-copy">The layout uses distinct pills so model diversity reads quickly. On a final public version, hovering each pill can reveal one-line notes or a compact results table.</p>
+          <p class="matrix-copy">The evaluation includes open and closed frontier models with different multimodal architectures and varying levels of speech capability.</p>
         </div>
 
         <div class="list-card reveal">
@@ -1572,7 +1570,7 @@
             <span class="pill">Audio questions</span>
             <span class="pill">Audio-visual questions</span>
           </div>
-          <p class="matrix-copy">This card mirrors the paper's breadth while keeping the landing page scan-friendly. The deeper tables can live in an appendix or supplementary results page.</p>
+          <p class="matrix-copy">Benchmarks include modality-partitioned QA settings, general audio-visual reasoning, and safety-oriented evaluations.</p>
         </div>
       </div>
     </section>
@@ -1581,18 +1579,18 @@
       <div class="section-head reveal">
         <div>
           <div class="section-tag">Safety and deployment</div>
-          <h2>End the narrative where it matters most.</h2>
+          <h2>Safety implications</h2>
           <p>
-            The project page should clearly signal that this is not just a curiosity about prompts. The final research message is about reliability, moderation, and multimodal robustness under realistic semantic interference.
+            The paper concludes with content-moderation results showing that spoken benign cues can weaken harmful-content detection even when the harmful visual evidence remains present.
           </p>
         </div>
       </div>
 
       <div class="safety-grid">
         <div class="alert reveal">
-          <h3>Visual tone for the safety block</h3>
+          <h3>MetaHarm result</h3>
           <p>
-            Shift from cool cyan-violet accents toward warmer amber-red highlights. This creates a subtle emotional transition without losing the overall premium look. The effect should feel serious, not alarmist.
+            For Qwen2.5-Omni-7B, harmful-content detection on MetaHarm drops from 26.16% on clean inputs to 20.41% with a keyword-style benign cue and 8.04% with a stronger prompt-style benign cue.
           </p>
           <div class="drop-board">
             <div class="drop">
@@ -1613,8 +1611,8 @@
         <div class="compare-card reveal">
           <div class="compare-header">
             <div>
-              <h3>What the visitor should remember</h3>
-              <p>Benign-seeming speech can weaken moderation and redirect model outputs even when the harmful visual evidence stays on screen.</p>
+              <h3>Interpretation</h3>
+              <p>These results show that spoken semantics can override grounded visual evidence in safety-sensitive settings, not only in standard benchmark classification.</p>
             </div>
           </div>
           <div class="bar-rows">
@@ -1642,18 +1640,18 @@
       <div class="section-head reveal">
         <div>
           <div class="section-tag">Resources</div>
-          <h2>Make the public research release feel complete.</h2>
+          <h2>Resources</h2>
           <p>
-            This block should now behave like a standard public project page: direct access to the preprint, a clean paper entry, and space for code, data, and citation materials.
+            Direct links to the paper and supplementary release materials.
           </p>
         </div>
       </div>
 
       <div class="resources">
         <div class="resource-card reveal">
-          <h3>Project resources</h3>
+          <h3>Project links</h3>
           <p>
-            Use compact, high-polish resource rows rather than large banners. Each row should clearly state what is already available and what will be added next.
+            Links to the paper and supplementary materials for the public release.
           </p>
           <div class="resource-list">
             <div class="resource-item">
@@ -1672,38 +1670,38 @@
             </div>
             <div class="resource-item">
               <div>
-                <strong>Code and data</strong>
-                <span>Reserved slot for the public repository, benchmark files, and replication materials.</span>
+                <strong>Code</strong>
+                <span>Repository for attack generation, evaluation, and visualization.</span>
               </div>
               <span class="ghost">Coming soon</span>
             </div>
             <div class="resource-item">
               <div>
-                <strong>Appendix figures</strong>
-                <span>Useful for the public version if you want a deeper results tab.</span>
+                <strong>Data</strong>
+                <span>Benchmark splits, qualitative examples, and supplementary release materials.</span>
               </div>
-              <a class="ghost" href="#figures">View section</a>
+              <span class="ghost">Coming soon</span>
             </div>
           </div>
         </div>
 
         <div class="blind-card reveal">
-          <h3>Public release notes</h3>
+          <h3>Citation</h3>
           <p>
-            This version should read like a polished public research page. Keep the hero concise, place the authors and affiliation directly under the title, and surface the preprint prominently without crowding the layout.
+            Use the following paper citation block for the public project page. Replace placeholder links with the final arXiv, code, and dataset URLs when available.
           </p>
           <div class="blind-note">
             <div class="blind-tip">
-              <strong>Hero composition</strong>
-              <span>Keep the title, authors, affiliation, and preprint access tightly grouped so the first screen feels authoritative and complete.</span>
+              <strong>BibTeX</strong>
+              <span>@article{chen2026multimodal,<br>title={{A Systematic Study of Cross-Modal Typographic Attacks on Audio-Visual Reasoning}},<br>author={{Chen, Tianle and Ghadiyaram, Deepti}},<br>journal={{arXiv preprint arXiv}},<br>year={{2026}}}</span>
             </div>
             <div class="blind-tip">
-              <strong>Public additions</strong>
-              <span>Add code, data, BibTeX, and optional project video in the same card style so the site stays visually consistent.</span>
+              <strong>Contact</strong>
+              <span>Department of Computer Science, Boston University</span>
             </div>
             <div class="blind-tip">
-              <strong>Accessibility</strong>
-              <span>Keep contrast high, motion subtle, alt text present, and key claims readable without hover interactions.</span>
+              <strong>Email</strong>
+              <span>{tianle, dghadiya}@bu.edu</span>
             </div>
           </div>
         </div>
@@ -1714,10 +1712,10 @@
   <footer class="shell">
     <div class="footer-panel reveal">
       <div>
-        <div class="section-tag">ArXiv project page</div>
-        <h2 style="margin: 8px 0 0; font-size: clamp(1.5rem, 3vw, 2.4rem); letter-spacing: -0.04em;">Professional, beautiful, and presentation-ready.</h2>
+        <div class="section-tag">Multi-Modal Typography</div>
+        <h2 style="margin: 8px 0 0; font-size: clamp(1.5rem, 3vw, 2.4rem); letter-spacing: -0.04em;">A public project page for the paper</h2>
         <p>
-          This concept deliberately balances luxury and scientific seriousness. It is fancy enough to feel memorable, but every effect is there to serve comprehension: hierarchy, motion, figures, and metric emphasis all reinforce the paper's research story.
+          This page summarizes the paper's central findings on spoken semantic injection, cross-modal attack interactions, and safety-sensitive failure modes in audio-visual MLLMs.
         </p>
       </div>
       <div class="footer-actions">
