@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# Generated outputs
+outputs/
+experiments/
+tts_cache/
+_tmp/
+*.wav
+*.mp4
+!assets/*.mp4
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp

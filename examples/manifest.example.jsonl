@@ -1,0 +1,3 @@
+{"video": "data/clips/cat_001.mp4", "target": "horse", "true_class": "cat"}
+{"video": "data/clips/cat_002.mp4", "target": "dog", "true_class": "cat"}
+{"video": "data/clips/dog_001.mp4", "target": "piano", "true_class": "dog"}
