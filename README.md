@@ -156,11 +156,43 @@ inject_visual_typography(
 `render_speech` (in `typography/audio.py`) is exposed if you only need the
 intermediate spoken wav.
 
+## Reproducing the paper benchmarks
+
+The [`benchmarks/`](benchmarks/) directory releases the **exact attack data**
+used in the paper, so the attacked videos can be regenerated and re-evaluated.
+We cannot redistribute the source videos, so each benchmark ships *provenance*
+(links / ids + timestamps) plus a per-clip **attack manifest** (the injected
+target and the exact generation parameters) and the QA labels.
+
+- [`benchmarks/mma_bench/`](benchmarks/mma_bench/) — audio-typography attack on
+  658 clips (61 classes), with YouTube/AudioSet provenance.
+- [`benchmarks/worldsense/`](benchmarks/worldsense/) — audio attack on WorldSense
+  multiple-choice questions (the best-performing `random_option_content` setting).
+
+Each `attacks_*.jsonl` row is a self-contained attack spec. After obtaining the
+source clips (see the per-benchmark READMEs), regenerate and score with:
+
+```bash
+# Regenerate attacked videos from a released manifest
+python scripts/reproduce_attacks.py --attack audio \
+    --manifest benchmarks/mma_bench/attacks_audio.jsonl \
+    --clips path/to/clips --out-dir attacked/mma_audio
+
+# Score model predictions: ACC (robustness) and ASR (attack success rate)
+python scripts/evaluate.py \
+    --qa benchmarks/mma_bench/qa/qa_audio.jsonl --pred your_predictions.jsonl
+```
+
+`scripts/build_provenance.py` builds a links+timestamps manifest for your own
+AudioSet-derived data. See [`benchmarks/README.md`](benchmarks/README.md) for
+schemas, the exact attack recipes, and licensing/ethics.
+
 ## Repository layout
 
 ```
 typography/        # library: audio.py, visual.py, multimodal.py, tts.py, utils.py
-scripts/           # CLI entry points + manifest / QA helpers
+scripts/           # CLI entry points + manifest / QA / reproduction / eval helpers
+benchmarks/        # released paper attack data (MMA-Bench, WorldSense) + docs
 examples/          # example manifests
 assets/            # project-page figures
 index.html         # project page
