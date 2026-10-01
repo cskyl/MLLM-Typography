@@ -1,0 +1,21 @@
+{
+  "tts": "Piper",
+  "voice": "en_US-amy-medium.onnx",
+  "length_scale": 1.0,
+  "noise_scale": 0,
+  "noise_w_scale": 0,
+  "sentence_silence": 0,
+  "sample_rate_hz": 22050,
+  "channels": 1,
+  "audio_duration_seconds": 10,
+  "speech_onset_seconds": 1,
+  "speech_repetitions": 1,
+  "speech_text": "Use the exact speech_text field in train_manifest.jsonl, including underscores.",
+  "active_mask": "abs(placed speech) > max(abs(placed speech)) * 0.01",
+  "volume_multiplier": "RMS(original soundtrack over 10 seconds) / RMS(placed speech over active_mask)",
+  "shared_scale": "min(1, 0.98 / max(peak(original), peak(original + scaled speech)))",
+  "clean_audio": "original * shared_scale",
+  "attack_audio": "(original + placed speech * volume_multiplier) * shared_scale",
+  "audio_encoding": "ALAC lossless from signed PCM32",
+  "video_encoding": "copy original video stream"
+}

@@ -331,7 +331,8 @@
     .hero-stage {
       position: relative;
       padding: 28px;
-      min-height: 640px;
+      min-height: 0;
+      align-self: center;
       border-radius: 36px;
       border: 1px solid rgba(255,255,255,0.12);
       background:
@@ -1152,7 +1153,7 @@
       .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .modality-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .hero-stage { min-height: 580px; }
+      .hero-stage { min-height: 0; }
       .card-a { left: 18px; top: 18px; }
       .card-b { right: 18px; bottom: 18px; }
       .card-c { left: 24px; bottom: 32px; }
@@ -1230,8 +1231,8 @@
           <div class="eyebrow">ArXiv preprint</div>
           <h1>Cross-Modal Typographic Attacks</h1>
           <p class="subtitle">
-            We study how semantically targeted perturbations delivered through audio, visual text, and text prompts influence audio-visual MLLMs.
-            The paper introduces <em>Multi-Modal Typography</em> and shows that spoken injection is a realistic and effective attack channel, with stronger failures under aligned multi-modal perturbations.
+            We study how misleading speech, on-screen text, and text prompts change the predictions of audio-visual MLLMs.
+            <em>Multi-Modal Typography</em> compares these attack channels across models and tasks, measures human perception of added speech, and tests fine-tuning as a defense.
           </p>
 
           <div class="authors">
@@ -1253,26 +1254,16 @@
           </div>
 
           <p class="hero-note">
-            The page highlights the main quantitative findings, attack settings, ablations, and safety implications from the paper in a concise public release format.
+            Updated manuscript: September 30, 2026. The PDF includes newer Gemini models, a human study, offline robot-task selection, and fine-tuning results.
           </p>
         </div>
 
         <div class="hero-stage reveal" id="heroStage">
           <div class="hero-figure-frame">
-            <img src="assets/hero_1.png" alt="Figure showing clean audio-video input, injected audio and visual distractors, and resulting model prediction shift." />
+            <img src="assets/overview_current.png" alt="Figure showing clean audio-video input, injected audio and visual distractors, and resulting model prediction shift." />
           </div>
 
-          <div class="float-card card-b">
-            <small>Safety stress test</small>
-            <strong><span class="count" data-target="8.04">8.04</span>% harmful detection</strong>
-            <p>Prompt-style benign speech can suppress harmful-content detection in the MetaHarm evaluation slice.</p>
-          </div>
 
-          <div class="float-card card-c">
-            <small>WorldSense</small>
-            <strong><span class="count" data-target="64.03">64.03</span>%</strong>
-            <p>Standalone spoken typography steers Qwen2.5-Omni-7B strongly on audio-visual questions.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -1281,7 +1272,7 @@
       <div class="section-head reveal">
         <div>
           <div class="section-tag">Overview</div>
-          <h2>Abstract and main contributions</h2>
+          <h2>What we study</h2>
           <p>
             Multi-Modal Typography studies how semantically matched perturbations across audio, visual, and text channels can redirect audio-visual reasoning.
             The central question is whether MLLMs treat semantically similar signals consistently across modalities, or whether the delivery channel fundamentally changes model behavior.
@@ -1292,7 +1283,7 @@
       <div class="overview-grid">
         <div class="panel reveal">
           <div class="statement">
-            <b>Speech is a native and realistic attack surface</b> for audio-visual MLLMs. Injected spoken cues can steer audio-grounded tasks, spill over into visually grounded tasks, and become substantially stronger when paired with aligned visual perturbations.
+            <b>Misleading speech can change visually grounded answers.</b> We keep the visual stream unchanged and add speech that names or describes a wrong answer. We then compare speech with on-screen text and prompt-text attacks.
           </div>
           <div class="mini-grid">
             <div class="mini">
@@ -1304,12 +1295,12 @@
               <span>Attacks are evaluated across audio, visual, and text channels to measure how different delivery modalities propagate adversarial semantics.</span>
             </div>
             <div class="mini">
-              <strong>Multi-modal amplification</strong>
-              <span>Aligned audio-visual attacks are stronger than single-modality perturbations, showing that semantic agreement across channels amplifies failure.</span>
+              <strong>Human perception</strong>
+              <span>Sixteen participants rated whether they noticed the added voice and understood its words across seven volume levels.</span>
             </div>
             <div class="mini">
-              <strong>Safety relevance</strong>
-              <span>The study extends beyond benchmark accuracy to content moderation, showing that benign spoken cues can reduce harmful-content detection.</span>
+              <strong>Applications and defense</strong>
+              <span>We test content moderation and offline robot-task selection, then examine whether training on attacked videos improves robustness.</span>
             </div>
           </div>
         </div>
@@ -1321,9 +1312,9 @@
                 <h3>Unimodal audio attack</h3>
                 <p style="margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.7;">Standalone spoken typography on WorldSense.</p>
               </div>
-              <div class="ring" style="--p:64.03;"><span>64%</span></div>
+              <div class="ring" style="--p:43.41;"><span>43.4%</span></div>
             </div>
-            <p>On WorldSense, Qwen2.5-Omni-7B reaches 64.03% targeted ASR under spoken semantic injection.</p>
+            <p>On WorldSense, spoken typography raises Gemini 3.7 Flash's ASR from 9.53% to 43.41%.</p>
           </div>
           <div class="ring-card">
             <div class="ring-head">
@@ -1333,7 +1324,7 @@
               </div>
               <div class="ring" style="--p:12.85; background: conic-gradient(var(--gold) calc(var(--p) * 1%), rgba(255,255,255,0.08) 0);"><span>12.85</span></div>
             </div>
-            <p>On MMA-Bench visual questions, injected speech reduces Qwen2.5-Omni-7B accuracy by 12.85% even though the visual input is unchanged.</p>
+            <p>On MMA-Bench visual questions, injected speech reduces Qwen2.5-Omni-7B accuracy by 12.85 percentage points even though the visual input is unchanged.</p>
           </div>
           <div class="ring-card">
             <div class="ring-head">
@@ -1353,9 +1344,9 @@
       <div class="section-head reveal">
         <div>
           <div class="section-tag">Key findings</div>
-          <h2>Audio typography is effective on its own, stronger when aligned across modalities.</h2>
+          <h2>Attack strength depends on the model, modality, and spoken content.</h2>
           <p>
-            These summary cards highlight the strongest quantitative results from the paper across aligned attacks, unimodal spoken attacks, cross-modal spillover, and safety evaluation.
+            The updated study connects attack success with human perception and evaluates fine-tuning on attacked videos.
           </p>
         </div>
       </div>
@@ -1368,18 +1359,18 @@
         </article>
         <article class="stat-card reveal">
           <div class="stat-label">Standalone audio typography</div>
-          <div class="stat-value"><span class="count" data-target="64.03">64.03</span>%</div>
-          <p>Audio injection alone reaches strong targeted attack success on WorldSense, showing that speech is already a powerful channel.</p>
+          <div class="stat-value"><span class="count" data-target="61.39">61.39</span>%</div>
+          <p>On WorldSense, Qwen3-Omni-30B ASR rises from 14.35% on clean inputs to 61.39% with misleading speech.</p>
         </article>
         <article class="stat-card reveal">
-          <div class="stat-label">Cross-modal spillover</div>
-          <div class="stat-value"><span class="count" data-target="12.85">12.85</span>%</div>
-          <p>Speech does not only hurt audio-centric reasoning. It also reduces accuracy on visually focused questions in MMA-Bench.</p>
+          <div class="stat-label">Human perception</div>
+          <div class="stat-value"><span class="count" data-target="77.3">77.3</span>%</div>
+          <p>At volume 0.05, the added speech went unnoticed in 77.3% of human ratings. Qwen2.5-Omni-7B ASR on WorldSense rose from 18.3% with muted speech to 21.9%.</p>
         </article>
         <article class="stat-card reveal">
-          <div class="stat-label">Safety degradation</div>
-          <div class="stat-value"><span class="count" data-target="8.04">8.04</span>%</div>
-          <p>Under stronger prompt-style benign speech, harmful-content detection on the MetaHarm slice falls sharply for Qwen2.5-Omni-7B.</p>
+          <div class="stat-label">Fine-tuning defense</div>
+          <div class="stat-value"><span class="count" data-target="52.0">52.0</span>% ASR</div>
+          <p>Training Qwen2.5-Omni-7B on attacked AudioSet videos lowers WorldSense ASR from 60.6% to 52.0%, while attack-input accuracy rises from 24.1% to 28.1%.</p>
         </article>
       </div>
     </section>
@@ -1403,7 +1394,7 @@
             </svg>
           </div>
           <h3>Audio typography</h3>
-          <p>Use spoken target cues as the native adversarial channel. Visually, this card should feel fluid and temporal, with wave-like accents and soft cyan glows.</p>
+          <p>Synthesize a misleading phrase with text-to-speech and mix it into the soundtrack. The video frames stay unchanged.</p>
           <div class="tag-row">
             <span class="tag">TTS injection</span>
             <span class="tag">Volume</span>
@@ -1420,7 +1411,7 @@
             </svg>
           </div>
           <h3>Visual typography</h3>
-          <p>Overlayed on-screen text is the most legible visual cue. Give this block stronger geometric framing, slightly brighter borders, and a warmer gold highlight.</p>
+          <p>Overlay text naming a wrong class or answer on the video frames while preserving the original audio.</p>
           <div class="tag-row">
             <span class="tag">On-screen text</span>
             <span class="tag">Prompt hijack</span>
@@ -1438,7 +1429,7 @@
             </svg>
           </div>
           <h3>Text prompt channel</h3>
-          <p>Prompt text completes the triad. This card should feel slightly more abstract and symbolic, using violet gradients and compact language-oriented badges.</p>
+          <p>Add a misleading target to the model's text prompt and compare its effect with the audio and visual channels.</p>
           <div class="tag-row">
             <span class="tag">Instruction text</span>
             <span class="tag">Target semantics</span>
@@ -1463,64 +1454,71 @@
         <article class="step reveal">
           <div class="step-index">1</div>
           <h3>Start from clean audio-video inputs</h3>
-          <p>Use a calm baseline card with neutral lighting and clean spacing to represent the original multimodal scene before perturbation.</p>
+          <p>Evaluate each model on the original video and its question before adding an attack.</p>
         </article>
         <article class="step reveal">
           <div class="step-index">2</div>
           <h3>Inject spoken target cues</h3>
-          <p>Represent TTS-based perturbation with waveform motifs and parameter chips for volume, repetition, temporal placement, and voice identity.</p>
+          <p>Choose a wrong target, synthesize the spoken cue, and control its volume, repetition, placement, and voice.</p>
         </article>
         <article class="step reveal">
           <div class="step-index">3</div>
           <h3>Compose cross-modal conflicts</h3>
-          <p>Show audio, visual, and text streams as coordinated rails so visitors can immediately understand aligned and conflicting attack settings.</p>
+          <p>For aligned attacks, speech and on-screen text suggest the same wrong answer. For conflicting attacks, they suggest different targets.</p>
         </article>
         <article class="step reveal">
           <div class="step-index">4</div>
           <h3>Evaluate ACC and ASR</h3>
-          <p>Convert the benchmark story into readable cards rather than raw tables. Emphasize targeted redirection, not just overall degradation.</p>
+          <p>Measure accuracy against the correct answer and attack success rate against the specified wrong target.</p>
         </article>
         <article class="step reveal">
           <div class="step-index">5</div>
-          <h3>Stress safety-sensitive moderation</h3>
-          <p>Close the method pipeline with a warmer, more urgent card to preview why this matters beyond benchmark performance.</p>
+          <h3>Test application settings</h3>
+          <p>Test whether misleading cues change harmful-content detection or the task selected from robot-scene images and a spoken instruction.</p>
         </article>
       </div>
     </section>
 
     <section class="shell" id="figures">
-      <div class="section-head reveal">
-        <div>
-          <div class="section-tag">Figure gallery</div>
-          <h2>Selected figures</h2>
-          <p>
-            These figures summarize the main ablations: parameter sensitivity, effectiveness-stealth trade-offs, and prediction redistribution under stronger attacks.
-          </p>
-        </div>
-      </div>
-
-      <div class="figure-grid">
-        <figure class="figure-large reveal">
-          <img src="assets/fig2_1.png" alt="Figure summarizing audio-visual typography takeaways and parameter sensitivity across volume, insertion position, repetition, and voice identity." />
-          <figcaption><b>Figure focus:</b> Sensitivity across volume, insertion position, repetition, and voice identity. This figure shows how volume, insertion position, repetition, and voice identity affect targeted attack strength.</figcaption>
-        </figure>
-
-        <div class="figure-stack">
-          <figure class="reveal">
-            <img src="assets/fig3_1.png" alt="Figure plotting effectiveness-stealth trade-off for audio questions with relative RMS and speech recognition shift." />
-            <figcaption><b>Trade-off view:</b> Volume is strongest but least stealthy, while repetition offers a more favorable effectiveness-stealth balance.</figcaption>
-          </figure>
-          <figure class="reveal">
-            <img src="assets/fig6_1.png" alt="WorldSense parameter sensitivity figure for Qwen2.5-Omni-7B showing targeted ASR and label accuracy changes." />
-            <figcaption><b>WorldSense stress test:</b> Gain and repetition remain the dominant controls even in longer, speech-rich videos.</figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <figure class="wide-figure reveal" style="margin-top: 18px;">
-        <img src="assets/fig19_2.png" alt="Prediction redistribution figure showing the effect of gain variation on ground-truth and injected target predictions." />
-        <figcaption><b>Prediction redistribution:</b> This redistribution analysis shows that stronger attacks reallocate predictions toward the injected target rather than causing only generic corruption.</figcaption>
+      <div class="section-head reveal"><div>
+        <div class="section-tag">Figures from the updated paper</div>
+        <h2>Human perception and attack strength</h2>
+        <p>Higher-volume speech produces stronger attacks and becomes easier to notice and understand.</p>
+      </div></div>
+      <figure class="wide-figure reveal">
+        <img src="assets/human_perception.png" alt="Human voice detection and word understanding alongside Qwen2.5-Omni-7B attack success and accuracy across speech volumes." />
+        <figcaption><b>Human perception and model performance.</b> Human curves summarize ratings from 16 participants across 30 videos; understanding means understanding all words. Model curves show Qwen2.5-Omni-7B on WorldSense. The human and model evaluations use different samples. At volume 2, model ASR is 54.7%; the voice is noticed in all human ratings and all words are understood in 82.6%.</figcaption>
       </figure>
+      <div class="matrix" style="margin-top:18px;">
+        <figure class="wide-figure reveal">
+          <img src="assets/prominence_audio.png" alt="Audio-question accuracy against RMS increase and Whisper target recall." />
+          <figcaption><b>Audio questions.</b> Qwen2.5-Omni-7B on MMA-Bench as speech volume, repetition, or start time varies.</figcaption>
+        </figure>
+        <figure class="wide-figure reveal">
+          <img src="assets/prominence_visual.png" alt="Visual-question accuracy against RMS increase and Whisper target recall." />
+          <figcaption><b>Visual questions.</b> The same audio perturbations can affect answers about the unchanged visual stream.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="shell" id="defense">
+      <div class="section-head reveal"><div>
+        <div class="section-tag">Applications and mitigation</div>
+        <h2>From task selection to fine-tuning</h2>
+      </div></div>
+      <div class="matrix">
+        <div class="list-card reveal">
+          <h3>Offline robot-task selection</h3>
+          <p>Across 200 LIBERO-Goal examples, Qwen2.5-Omni-7B selects the original task in 180 clean cases. With aligned misleading speech and text, it selects the original task in 41 cases and the attacker's task in 140. The inputs are front-view and wrist-view images with a spoken instruction; no robot action is executed.</p>
+        </div>
+        <div class="list-card reveal">
+          <h3>Fine-tuning on attacked videos</h3>
+          <p>We train Qwen2.5-Omni-7B on 998 AudioSet videos using their original sound labels. On 1,585 WorldSense questions, training on attacked videos lowers ASR from 60.6% to 52.0%. A prompt reminder asking the base model to ignore embedded instructions gives 58.8% ASR.</p>
+          <p><a href="https://github.com/cskyl/MLLM-Typography/blob/main/docs/reproduction.md">Training settings and release materials</a></p>
+          <p><a href="https://github.com/cskyl/MLLM-Typography/tree/main/data/audioset_sft">SFT training annotations and speech settings</a></p>
+          <p><a href="https://drive.google.com/file/d/1JUMbSyF3r3pskxYcdpf1zGp8rcmDQQaJ/view">Download the complete SFT video ZIP (4.40 GB)</a></p>
+        </div>
+      </div>
     </section>
 
     <section class="shell">
@@ -1544,6 +1542,8 @@
             <span class="pill">ChatBridge</span>
             <span class="pill">Gemini-2.5-Flash-Lite</span>
             <span class="pill">Gemini-3.1-Flash-Lite-preview</span>
+            <span class="pill">Gemini 3.7 Flash</span>
+            <span class="pill">Gemini 3.1 Pro Preview</span>
           </div>
           <p class="matrix-copy">The evaluation includes open and closed frontier models with different multimodal architectures and varying levels of speech capability.</p>
         </div>
@@ -1556,6 +1556,8 @@
             <span class="pill">WorldSense</span>
             <span class="pill">MetaHarm</span>
             <span class="pill">I2P</span>
+            <span class="pill">LIBERO-Goal</span>
+            <span class="pill">Human perception</span>
             <span class="pill">Visual questions</span>
             <span class="pill">Audio questions</span>
             <span class="pill">Audio-visual questions</span>
@@ -1647,14 +1649,14 @@
             <div class="resource-item">
               <div>
                 <strong>ArXiv preprint</strong>
-                <span>Primary public entry point for the paper and abstract.</span>
+                <span>arXiv record and version history.</span>
               </div>
               <a class="ghost" href="https://arxiv.org/abs/2604.03995" target="_blank" rel="noopener noreferrer">Open preprint</a>
             </div>
             <div class="resource-item">
               <div>
                 <strong>Paper PDF</strong>
-                <span>Direct PDF access for readers who want the full manuscript immediately.</span>
+                <span>Latest manuscript, updated September 30, 2026.</span>
               </div>
               <a class="ghost" href="paper.pdf">Open PDF</a>
             </div>
@@ -1664,6 +1666,18 @@
                 <span>Attack-generation pipeline (audio, visual, multi-modal), reproduction, and evaluation scripts.</span>
               </div>
               <a class="ghost" href="https://github.com/cskyl/MLLM-Typography" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+            <div class="resource-item">
+              <div><strong>Reproduction guide</strong><span>Existing attack code, benchmark manifests, and fine-tuning settings.</span></div>
+              <a class="ghost" href="https://github.com/cskyl/MLLM-Typography/blob/main/docs/reproduction.md">Read guide</a>
+            </div>
+            <div class="resource-item">
+              <div><strong>SFT training annotations</strong><span>Source segments, labels, and speech settings for 998 paired videos.</span></div>
+              <a class="ghost" href="https://github.com/cskyl/MLLM-Typography/tree/main/data/audioset_sft">View annotations</a>
+            </div>
+            <div class="resource-item">
+              <div><strong>SFT video archive</strong><span>1,996 clean and attacked MP4 files, annotations, and checksums. ZIP, 4.40 GB.</span></div>
+              <a class="ghost" href="https://drive.google.com/file/d/1JUMbSyF3r3pskxYcdpf1zGp8rcmDQQaJ/view">Download ZIP</a>
             </div>
           </div>
         </div>

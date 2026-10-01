@@ -17,6 +17,26 @@ The pipeline produces three families of attacks:
 The project page (`index.html`) and paper (`paper.pdf`) live in this same
 repository.
 
+## Updated manuscript and SFT data — October 1, 2026
+
+[Latest PDF](paper.pdf) · [Project page](https://cskyl.github.io/MLLM-Typography/) ·
+[arXiv version history](https://arxiv.org/abs/2604.03995) ·
+[Reproduction materials and training settings](docs/reproduction.md)
+
+[SFT training annotations: 998 paired videos](data/audioset_sft/) ·
+[Complete SFT video ZIP (4.40 GB)](https://drive.google.com/file/d/1JUMbSyF3r3pskxYcdpf1zGp8rcmDQQaJ/view)
+
+The updated manuscript adds Gemini 3.7 Flash and Gemini 3.1 Pro Preview results,
+a 16-participant human study, offline robot-task selection, adversarial
+fine-tuning, and appendix analyses of attention and answer scores.
+
+Attack-generation code, benchmark manifests, and a generic scoring helper are
+already available below. This update adds the SFT training annotations,
+speech settings, and a Drive download of the clean and attacked training videos.
+The reproduction guide lists the remaining materials needed
+to reproduce the new experiments. The linked arXiv record has its own
+version history; `paper.pdf` is the latest manuscript hosted here.
+
 ## Install
 
 ```bash
@@ -158,8 +178,9 @@ intermediate spoken wav.
 
 ## Reproducing the paper benchmarks
 
-The [`benchmarks/`](benchmarks/) directory releases the **exact attack data**
-used in the paper, so the attacked videos can be regenerated and re-evaluated.
+The [`benchmarks/`](benchmarks/) directory contains the released audio-attack
+manifests and QA labels for MMA-Bench and WorldSense, with fixed wrong targets
+for regenerating attacks and scoring model predictions.
 We cannot redistribute the source videos, so each benchmark ships *provenance*
 (links / ids + timestamps) plus a per-clip **attack manifest** (the injected
 target and the exact generation parameters) and the QA labels.
@@ -194,9 +215,10 @@ typography/        # library: audio.py, visual.py, multimodal.py, tts.py, utils.
 scripts/           # CLI entry points + manifest / QA / reproduction / eval helpers
 benchmarks/        # released paper attack data (MMA-Bench, WorldSense) + docs
 examples/          # example manifests
+docs/              # reproduction materials and training settings
 assets/            # project-page figures
 index.html         # project page
-paper.pdf          # camera-ready PDF
+paper.pdf          # latest preprint PDF
 ```
 
 ## Citation
@@ -209,4 +231,3 @@ paper.pdf          # camera-ready PDF
   year={2026}
 }
 ```
-

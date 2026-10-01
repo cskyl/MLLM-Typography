@@ -1,0 +1,26 @@
+{
+  "source_export_version": "v4",
+  "training_sources": 998,
+  "clean_training_rows": 998,
+  "attacked_training_rows": 998,
+  "answer_vocabulary_size": 61,
+  "represented_training_labels": 60,
+  "answer_classes_without_training_examples": [
+    "Gears"
+  ],
+  "excluded_source_ids": [
+    "BLnOPA7oMxY",
+    "dzymKGoHtTA"
+  ],
+  "media_included": false,
+  "source_model": "Qwen/Qwen2.5-Omni-7B",
+  "source_model_revision": "ae9e1690543ffd5c0221dc27f79834d0294cba00",
+  "source_files_sha256": {
+    "train_clean.jsonl": "d5f1cfa1b1e14a1a44d738ef4ba40193e688e35d60cc5de45f97dd1db021105d",
+    "train_attack.jsonl": "dd75da6ef35934793c51de7c6b3ab47288b108966e993956dc3e966c38cb8624",
+    "dataset_info.json": "f55e4186b69e742639e9f05bdfe3bef6ca93dfc6a2e8f2cce91ec48ddebd6358",
+    "EXPORT_FORMAL.json": "edca3b9853d37e6cc8cecfaa3c483ffb0f90e2991dd1b252bd3e6638a4799f5b"
+  },
+  "media_manifest_sha256": "95eb5c38f069d5f96e8de2441eda7e5e83d7d32031b2c6525300b4047f2910f7",
+  "source_metadata_sha256": "ecfe4a6090e1e84429d42fa66f9e3dca7f4b9b6d157341dd226d888dfa4a2568"
+}

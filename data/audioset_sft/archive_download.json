@@ -1,0 +1,10 @@
+{
+  "file_name": "typography_audioset_sft_998_20261001.zip",
+  "url": "https://drive.google.com/file/d/1JUMbSyF3r3pskxYcdpf1zGp8rcmDQQaJ/view",
+  "bytes": 4400189869,
+  "sha256": "d185dc17238421e686df91c4e7e74dcd8818af320b67ff22f95d410b9d65c866",
+  "media_files": 1996,
+  "training_sources": 998,
+  "layout": "audioset_sft/media/train/{clean,attack}/",
+  "per_file_checksums": "audioset_sft/SHA256SUMS"
+}
